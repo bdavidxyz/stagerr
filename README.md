@@ -19,6 +19,13 @@ Stage aout oct 2024 RR : démarreur d'application avec NextJS
 - Terminal : "git checkout -b otherbranch" pour ne pas rester sur main (risque d'écraser la branche principale)
 - refaire depuis étape2
 
+### Se définir des alias
+
+- "gs" pour "git status"
+- "gcomain" pour "git checkout main"
+- "gcob" pour "git checkout -b"
+- etc... pour toute action répétitive dans le terminal
+
 ### Apprendre NextJS
 
 ### Formations pros
