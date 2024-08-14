@@ -16,6 +16,8 @@ Stage aout oct 2024 RR : démarreur d'application avec NextJS
 - GitHub : si c'est bon, "merge pull request"
 - GitHub : "delete branch" une fois que c'est fait
 - Terminal : "git checkout main && git pull origin main" pour se remettre à jour
+- Terminal : "git checkout -b otherbranch" pour ne pas rester sur main (risque d'écraser la branche principale)
+- refaire depuis étape2
 
 ### Apprendre NextJS
 
