@@ -1,0 +1,20 @@
+.menu{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 70px;
+    width: 100%;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+.menu li a{
+    text-decoration: none;
+    color: #000;
+    font-weight: 700;
+    display: inline-block;
+    padding: 6px 24px;
+    background: #F2F2F2;
+    border-radius: 5px;
+}
