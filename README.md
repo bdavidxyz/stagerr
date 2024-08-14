@@ -28,8 +28,10 @@ Stage aout oct 2024 RR : démarreur d'application avec NextJS
 
 ### Apprendre NextJS
 
+
 ### Formations pros
 
-- https://www.youtube.com/watch?v=s6wy7nJOmis&list=PL5dpzLb9u7J3IBXZ0NmRI1hq9zEbXsCQH&pp=iAQB NextJS, Français, Gratuit
+- https://www.youtube.com/watch?v=s6wy7nJOmis&list=PL5dpzLb9u7J3IBXZ0NmRI1hq9zEbXsCQH&pp=iAQB (les 3 premières) NextJS, Français, Gratuit
+- avec Prisma, français, gratuit : https://www.youtube.com/watch?v=akP9E1vURBU
 - https://formation-cleanarchitecture.com/ (formation, payant, français)
   
