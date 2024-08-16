@@ -8,7 +8,7 @@ export default async function handler(req, res){
     // Ici on accepte que la method POST pour la requete
     if(req.method === "POST") {
 
-        // On récupère les informations envoyer pas le front
+        // On récupère les informations envoyer par le front
         const { email, password } = req.body
 
         // On crypte le mot de passe
