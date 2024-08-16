@@ -19,7 +19,9 @@ Stage aout oct 2024 RR : démarreur d'application avec NextJS
 - Terminal : git add . && git commit -m "mon premier commit"
 - Terminal : git push origin mybranch
 - GitHub : créer la PR sous GitHub
-- GitHub : faire des petits commits
+- GitHub : faire un petit commit
+- Git local : pusher la modif : git add . && git commit -m "mon autre commit" && git push origin mybranch
+- etc petit commit / commit-push
 - GitHub : relire les fichiers changés sous "files changed"
 - GitHub : si c'est bon, "merge pull request"
 - GitHub : "delete branch" une fois que c'est fait
