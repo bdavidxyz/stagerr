@@ -27,12 +27,6 @@ const prisma = new PrismaClient() // création d'un nouveau client prisma
             res.status(401).json({message: "Invalid email or password"})
         }
 
-        try {
-
-        } catch (error){ // Gestion des erreurs
-            res.status(500).json({message: "User creation failed", error: error.message})
-        }
-
     } else {
         res.status(405).json({message: "Method not allowed"})
     }
