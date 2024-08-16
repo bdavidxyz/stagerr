@@ -9,7 +9,7 @@ export default function Home() {
   useEffect(()=>{
 
     // Utilisation de Axios pour les requêtes
-    axios.post("/api/posts")
+    axios.get("/api/posts")
     .then(response => {
       setPosts(response.data.posts)
     })

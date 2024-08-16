@@ -7,7 +7,7 @@ const prisma = new PrismaClient()
 export default async function handler(req, res) {
 
   // Method POST uniquement
-  if(req.method === "POST") {
+  if(req.method === "GET") {
     try{
       // récupération de tout les post
       const posts = await prisma.post.findMany()

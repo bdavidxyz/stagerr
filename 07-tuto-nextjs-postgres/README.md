@@ -1,40 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Prérequis
 
-## Getting Started
+* Node.js (version 20.15.0 ou supérieure)
+* PostgreSQL 16 (installé et configuré)
+* Yarn ou npm
 
-First, run the development server:
+## Installation
+
+1. Clonez le repository :
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/bdavidxyz/stagerr.git
+cd monapp
+```
+2. Installez les dépendances :
+
+```bash
+yarn install
+# ou
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Configurez la base de données :
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Assurez-vous que PostgreSQL est en cours d'exécution et **créez une nouvelle base de données** pour ce projet.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Mettez à jour les informations de connexion à la base de données dans le fichier **.env** :
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+DATABASE_URL="postgresql://user:password@localhost:5432/nom_de_la_base?schema=public"
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+4. Initialisez Prisma :
 
-## Learn More
+```bash
+npx prisma migrate dev --name init
+npx prisma generate
+```
 
-To learn more about Next.js, take a look at the following resources:
+Création des tables dans votre base de données et généreration du client Prisma.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Démarrage du serveur
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+yarn dev
+# ou
+npm run dev
+```
