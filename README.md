@@ -8,6 +8,7 @@ Stage aout oct 2024 RR : démarreur d'application avec NextJS
 - https://www.youtube.com/watch?v=s6wy7nJOmis&list=PL5dpzLb9u7J3IBXZ0NmRI1hq9zEbXsCQH&pp=iAQB (les 3 premières) NextJS, Français, Gratuit
 - faire la dernière vidéo sur les inscriptions
 - avec Prisma, français, gratuit : https://www.youtube.com/watch?v=akP9E1vURBU
+- !! il doit toujours y avoir un README à jour (prérequis: quels outils, quel version, quelle commande lancer pour vérifier  les résultats, quelle URL regarder...)
 
 
 
