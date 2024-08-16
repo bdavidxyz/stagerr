@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios" // Pour l'envoi de requêtes a l'api
 import { useRouter } from "next/router"; // Pour le routage des pages
 
-export default function Register() {
+export default function Login() {
 
     // Gestion de l'état pour le formulaire
     const [email, setEmail] = useState("")
