@@ -1,0 +1,12 @@
+.accueil{
+    width: 100%;
+    height: 100px;
+    background: #000;
+}
+
+.todolist{
+    background: #F2F2F2;
+    padding:30px;
+    box-sizing: border-box;
+    margin-top: 20px;
+}

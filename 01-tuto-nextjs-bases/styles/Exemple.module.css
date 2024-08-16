@@ -1,0 +1,10 @@
+.compo{
+    background: #F9F9F9;
+    padding: 20px;
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+.compo h2{
+    margin-bottom: 10px;
+}
