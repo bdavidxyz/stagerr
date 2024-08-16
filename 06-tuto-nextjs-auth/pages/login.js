@@ -16,11 +16,13 @@ export default function Register() {
         e.preventDefault()
         try {
             // On envoi une requête au serveur a l'aide de axios 
-            await axios.post("/api/register",{email,password})
-            // Puis on redirige vers la page login
-            router.push("/login")
+            const response = await axios.post("/api/login",{email,password})
+            // On stock le token généré dans le local storage afin de pouvoir par la suite l'envoyer au serveur a chaque requêtes.
+            localStorage.setItem("token", response.data.token)
+            // Puis on redirige vers la page dashboard
+            router.push("/dashboard")
         } catch (error) {
-            console.error("Registration failed", error)
+            console.error("Login failed", error)
         }
     }
 
@@ -40,7 +42,7 @@ export default function Register() {
                 placeholder="Mot de passe"
                 required
             />
-            <button type="submit" >S'inscrire</button>
+            <button type="submit" >Connexion</button>
         </form>
     );
 }
