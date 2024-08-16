@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken"; // Pour l'utilisation de Json Token
 const prisma = new PrismaClient(); // création d'un nouveau client prisma
 
 export default async function handler(req, res){
+
     // Ici on accepte que la method POST pour la requete
     if (req.method === "POST") {
         // On récupère les informations envoyer par le front
@@ -19,9 +20,9 @@ export default async function handler(req, res){
         if (user && bcrypt.compareSync(password, user.password)) {
             // Génération du token avec les informations user, la Secret key, et en option le temps d'expiration du token
             const token = jwt.sign(
-            { id: user.id, email: user.email },
-            process.env.JWT_SECRET,
-            { expiredIn: "1h" }
+                { id: user.id, email: user.email },
+                process.env.JWT_SECRET,
+                { expiresIn: "1h" }
             );
 
             res.status(200).json({ token });
@@ -31,4 +32,5 @@ export default async function handler(req, res){
     } else {
         res.status(405).json({ message: "Method not allowed" });
     }
+
 }
