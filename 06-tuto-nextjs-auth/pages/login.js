@@ -1,4 +1,3 @@
-import styles from "@/styles/Register.module.css";
 import { useState } from "react";
 import axios from "axios" // Pour l'envoi de requêtes a l'api
 import { useRouter } from "next/router"; // Pour le routage des pages
