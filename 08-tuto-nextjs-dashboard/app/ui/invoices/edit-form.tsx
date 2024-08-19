@@ -9,6 +9,8 @@ import {
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { Button } from '@/app/ui/button';
+import { updateInvoice } from '@/app/lib/actions';
+
 
 export default function EditInvoiceForm({
   invoice,
@@ -17,8 +19,12 @@ export default function EditInvoiceForm({
   invoice: InvoiceForm;
   customers: CustomerField[];
 }) {
+
+  // On ne peu pas pas transmettre l'id comme argument comme suit directement, au lieu de cela, on peu passer l'id à l'action du serveur à l'aide de JS bind. Cela garantira que toutes les valeurs transmises à l'action du serveur sont codées.
+  const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);
+
   return (
-    <form>
+    <form action={updateInvoiceWithId}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
