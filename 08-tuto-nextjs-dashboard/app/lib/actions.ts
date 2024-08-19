@@ -14,25 +14,61 @@ import { redirect } from 'next/navigation';
 
 const FormSchema = z.object({
     id: z.string(),
-    customerId: z.string(),
-    amount: z.coerce.number(),
-    status: z.enum(['pending', 'paid']),
+    customerId: z.string({
+        invalid_type_error: 'Please select a customer.',
+    }),
+    amount: z.coerce
+        .number()
+        .gt(0, { message: 'Please enter an amount greater than $0.' }),
+    status: z.enum(['pending', 'paid'], {
+        invalid_type_error: 'Please select an invoice status.',
+    }),
     date: z.string(),
 });
+
+// customerId - Zod génère déjà une erreur si le champ client est vide car il attend un type string. Mais ajoutons un message convivial si l'utilisateur ne sélectionne pas de client.
+// amount- Étant donné que vous forcez le type de montant de stringà number, il sera par défaut égal à zéro si la chaîne est vide. Disons à Zod que nous voulons toujours que le montant soit supérieur à 0 avec la .gt()fonction.
+// status - Zod génère déjà une erreur si le champ de statut est vide car il attend « en attente » ou « payé ». Ajoutons également un message convivial si l'utilisateur ne sélectionne pas de statut.
 
 const CreateInvoice = FormSchema.omit({ id: true, date: true });
 const UpdateInvoice = FormSchema.omit({ id: true, date: true });
 
+
+export type State = {
+    errors?: {
+        customerId?: string[];
+        amount?: string[];
+        status?: string[];
+    };
+    message?: string | null;
+};
+
 // Action d'ajout d'une facture en BDD
-export async function createInvoice(formData: FormData) {
+export async function createInvoice(prevState: State, formData: FormData) {
 
+    // prevState - contient l'état transmis depuis le useActionStatehook. Vous ne l'utiliserez pas dans l'action de cet exemple, mais c'est un accessoire obligatoire.
 
-    const { customerId, amount, status } = CreateInvoice.parse({
+    const validatedFields = CreateInvoice.safeParse({
+
+        // safeParse() renverra un objet contenant soit un champ successou error. Cela permettra de gérer la validation de manière plus élégante sans avoir à mettre cette logique à l'intérieur du try/catchbloc.
+
         customerId: formData.get('customerId'),
         amount: formData.get('amount'),
         status: formData.get('status'),
     });
 
+    // If form validation fails, return errors early. Otherwise, continue.
+    if (!validatedFields.success) {
+        return {
+        errors: validatedFields.error.flatten().fieldErrors,
+        message: 'Missing Fields. Failed to Create Invoice.',
+        };
+    } // Si validatedFieldscela n'aboutit pas, nous renvoyons la fonction plus tôt avec les messages d'erreur de Zod.
+
+
+    // Prepare data for insertion into the database
+    const { customerId, amount, status } = validatedFields.data;
+    
     const amountInCents = amount * 100; // Convertion en centimes, pour éliminer les erreurs de virgule flottante JavaScript et garantir une plus grande précision.
     const date = new Date().toISOString().split('T')[0];
 
