@@ -12,6 +12,13 @@ import { Button } from '@/app/ui/button';
 import { createInvoice, State } from '@/app/lib/actions';
 import { useActionState } from 'react';
 
+// Ajout de la validation de formulaire
+
+// BESOIN  :
+// useActionState
+// Modification de createInvoice action pour gérer les erreurs de validation de Zod.
+// Affichage des erreurs dans le composant et ajout des étiquettes Aria pour améliorer l'accessibilité.
+
 export default function Form({ customers }: { customers: CustomerField[] }) {
 
   const initialState: State = { message: null, errors: {} };
@@ -22,12 +29,12 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
 
       <div className="mb-4">
-          {(state.errors?.status || state.errors?.amount || state.errors?.customerId) &&
-            (<p className="mt-2 text-sm text-red-500">
-              Missing Fields. Failed to Create Invoice
-            </p>)
-          }
-        </div>  
+        {(state.errors?.status || state.errors?.amount || state.errors?.customerId) &&
+          (<p className="mt-2 text-sm text-red-500">
+            Missing Fields. Failed to Create Invoice
+          </p>)
+        }
+      </div>  
 
         {/* Customer Name */}
         <div className="mb-4">
@@ -54,12 +61,14 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
             <UserCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
           </div>
           <div id="customer-error" aria-live="polite" aria-atomic="true">
-            {state.errors?.customerId &&
-              state.errors.customerId.map((error: string) => (
-                <p className="mt-2 text-sm text-red-500" key={error}>
-                  {error}
-                </p>
-              ))}
+            {
+              state.errors?.customerId &&
+                state.errors.customerId.map((error: string) => (
+                  <p className="mt-2 text-sm text-red-500" key={error}>
+                    {error}
+                  </p>
+                ))
+            }
           </div>
         </div>
 
