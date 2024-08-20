@@ -4,6 +4,8 @@ import { z } from 'zod';
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache'; // vider le cache et déclencher une nouvelle requête au serveur. Peu être fait avec la revalidatePathfonction de Next.js
 import { redirect } from 'next/navigation';
+import { signIn } from '@/auth';
+import { AuthError } from 'next-auth';
 
 // 1. Extraction des données de formData.
 // 2. Validation des types avec Zod.
@@ -139,5 +141,25 @@ export async function deleteInvoice(id: string) {
         return { message: 'Deleted Invoice.' };
     } catch (error) {
         return { message: 'Database Error: Failed to Delete Invoice.' };
+    }
+}
+
+// Action de connexion
+export async function authenticate(
+    prevState: string | undefined,
+    formData: FormData,
+) {
+    try {
+        await signIn('credentials', formData);
+    } catch (error) {
+        if (error instanceof AuthError) {
+            switch (error.type) {
+            case 'CredentialsSignin':
+                return 'Invalid credentials.';
+            default:
+                return 'Something went wrong.';
+            }
+        }
+        throw error;
     }
 }
