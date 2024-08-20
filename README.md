@@ -40,6 +40,7 @@ Stage aout oct 2024 RR : démarreur d'application avec NextJS
 
 ### Apprendre NextJS
 
+- J'ai un peu de mal avec l'authentification. J'ai trouvé ce tuto https://www.youtube.com/watch?v=LaMoteg626I qui me semble pas trop mal.
 
 ### Formations pros
 
