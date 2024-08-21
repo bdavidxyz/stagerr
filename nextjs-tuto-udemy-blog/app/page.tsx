@@ -1,14 +1,21 @@
 "use client"
 
 import PageContainer from "@/components/page-container";
+import PostsList from "@/components/posts-list";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input";
+import { Category } from "@/types";
+import { CATEGORIES } from "@/utils/categories";
+import { POSTS } from "@/utils/posts";
+import Link from "next/link";
 
 export default function Home() {
 
   return (
     <PageContainer>
       <div className="py-10 px-4">
+
+        {/* First section */}
         <div 
           style={{backgroundImage:"url(/img/hero.jpg)"}}
           className="rounded-lg aspect-square md:aspect-[2.4/1] overflow-hidden bg-cover"
@@ -25,6 +32,24 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Categories section */}
+        <div className="mt-6 flex flex-col md:flex-row gap-4 justify-center items-center">
+        {
+          CATEGORIES.map((category : Category)=>(
+            <div key={category.id}>
+              <Link href={`/categories/${category.slug}`}>
+                <Button variant="outline">
+                  {category.name}
+                </Button>
+              </Link>
+            </div>
+          ))
+        }
+        </div>
+
+        {/* List posts section */}
+        <PostsList posts={POSTS} />
       </div>
     </PageContainer>
   );
