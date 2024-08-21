@@ -3,6 +3,7 @@ import PageContainer from './page-container'
 import { HeaderNavigation } from './header-navigation'
 import ProfileButton from "@/components/profile-button"
 import ResponsiveMenu from './responsive-menu'
+import ToggleTheme from './toggle-theme'
 
 export default function Header() {
     return (
@@ -22,8 +23,10 @@ export default function Header() {
                     <HeaderNavigation />
                     
                     {/* Buttons auth */}
-                    <div className='flex items-center'>
+                    <div className='flex items-center gap-2'>
                         {/* Toggle dark mode */}
+                        <ToggleTheme />
+
                         <ProfileButton />
                     </div>
                 </div>
