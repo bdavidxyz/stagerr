@@ -1,3 +1,7 @@
+import PageContainer from '@/components/page-container'
+import PageTitle from '@/components/page-title'
+import PostsList from '@/components/posts-list'
+import { POSTS } from '@/utils/posts'
 import React from 'react'
 
 type Props = {
@@ -11,6 +15,11 @@ export default function CategiriesPage({params} : Props) {
     const {slug} = params
 
     return (
-        <div>CategoriesPage {slug}</div>
+        <PageContainer>
+            <div className='py-10 px-4'>
+                <PageTitle title={slug.replace("-", " ")} />
+                <PostsList posts={POSTS} />
+            </div>
+        </PageContainer>
     )
 }
