@@ -15,7 +15,7 @@ export default function Header() {
                         <h1 
                         className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-red-400 to-blue-600"
                         >
-                            Nextjs Blog
+                            NextBlog
                         </h1>
                     </div>
                     
