@@ -4,12 +4,16 @@ import PageContainer from "@/components/page-container";
 import PostsList from "@/components/posts-list";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input";
+import { usePosts } from "@/hook/usePosts";
 import { Category } from "@/types";
 import { CATEGORIES } from "@/utils/categories";
-import { POSTS } from "@/utils/posts";
 import Link from "next/link";
 
 export default function Home() {
+
+  const {data : posts, isFetching, error} = usePosts()
+
+  if (error) return <p>Error fetching post</p>;
 
   return (
     <PageContainer>
@@ -49,7 +53,9 @@ export default function Home() {
         </div>
 
         {/* List posts section */}
-        <PostsList posts={POSTS} />
+        {
+          !isFetching && <PostsList posts={posts} />
+        }
       </div>
     </PageContainer>
   );
