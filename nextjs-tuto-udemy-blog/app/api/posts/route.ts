@@ -14,6 +14,9 @@ export const GET = async (req : Request) => {
             where: {
                 // si toutes les conditions sont vraies, l'expression retourne l'objet { catSlug }. Cet objet est ensuite inclus dans l'objet where grâce à l'opérateur spread ....
                 ...(catSlug && catSlug !== "null" && catSlug !== "" && { catSlug })
+            },
+            include: {
+                cat: true
             }
         })
         return NextResponse.json(posts, {status: 200})
