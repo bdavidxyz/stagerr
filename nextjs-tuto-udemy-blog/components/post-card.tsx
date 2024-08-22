@@ -1,12 +1,12 @@
-import { Post } from "@/types"
 import { Card, CardContent, CardFooter, CardHeader } from "./ui/card"
 import Link from "next/link"
 import Image from "next/image"
 import { Badge } from "./ui/badge"
 import { Eye, MessageCircle } from "lucide-react"
+import { PostWithCategory } from "@/types"
 
 type Props = {
-    post: Post
+    post: PostWithCategory
 }
 
 export default function PostCard({post} : Props) {
@@ -30,7 +30,7 @@ export default function PostCard({post} : Props) {
                 </CardHeader>
                 <CardContent>
                     <Badge variant="outline">
-                        {post.category}
+                        {post.cat.title}
                     </Badge>
                 </CardContent>
                 <CardFooter>
@@ -46,7 +46,7 @@ export default function PostCard({post} : Props) {
                                 size={20} className="text-slate-500"
                             />
                             <p className="text-slate-500">
-                                {post.nbViews}
+                                {post.view}
                             </p>
                         </div>
                     </div>
