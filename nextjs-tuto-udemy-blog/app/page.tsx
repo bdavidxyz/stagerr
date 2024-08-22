@@ -4,16 +4,16 @@ import PageContainer from "@/components/page-container";
 import PostsList from "@/components/posts-list";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input";
+import { useCategories } from "@/hook/useCategories";
 import { usePosts } from "@/hook/usePosts";
-import { Category } from "@/types";
-import { CATEGORIES } from "@/utils/categories";
+import { Category } from "@prisma/client";
 import Link from "next/link";
 
 export default function Home() {
 
-  const {data : posts, isFetching, error} = usePosts()
+  const {data : posts, isFetching} = usePosts()
+  const {data : categories, isFetching : isFetchingCategories} = useCategories()
 
-  if (error) return <p>Error fetching post</p>;
 
   return (
     <PageContainer>
@@ -40,11 +40,11 @@ export default function Home() {
         {/* Categories section */}
         <div className="mt-6 flex flex-col md:flex-row gap-4 justify-center items-center">
         {
-          CATEGORIES.map((category : Category)=>(
+          !isFetchingCategories && categories.map((category : Category)=>(
             <div key={category.id}>
               <Link href={`/categories/${category.slug}`}>
                 <Button variant="outline">
-                  {category.name}
+                  {category.title}
                 </Button>
               </Link>
             </div>
