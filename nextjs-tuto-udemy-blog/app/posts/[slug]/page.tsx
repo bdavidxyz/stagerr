@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Separator } from '@/components/ui/separator'
 import { usePost } from '@/hook/usePost'
 import { Eye, MessageCircle } from 'lucide-react'
+import Image from 'next/image'
 import React from 'react'
 
 export default function SinglePostPage({params}:{params : {slug:string}}) {
@@ -20,10 +21,14 @@ export default function SinglePostPage({params}:{params : {slug:string}}) {
         <PageContainer>
             <div className='p-8'>
                 <div 
-                style={{backgroundImage:"url(/img/hero.jpg)"}}
-                className="rounded-lg aspect-square md:aspect-[2.4/1] overflow-hidden bg-cover"
+                className="relative rounded-lg aspect-square md:aspect-[2.4/1] overflow-hidden bg-cover"
                 >
-                    <div className="h-full w-full flex flex-col justify-center items-center">
+                    <Image 
+                        src={post?.image || "/img/hero.jpg"}
+                        alt={post?.title as string}
+                        fill
+                    />
+                    <div className="absolute h-full w-full flex flex-col justify-center items-center">
                         <div className="sm:max-w-xl max-w-xs bg-secondary/80 p-4 rounded">
                             <h1 className="text-center font-bold text-3xl sm:text-5xl text-black dark:text-white">
                                 {post?.title}
