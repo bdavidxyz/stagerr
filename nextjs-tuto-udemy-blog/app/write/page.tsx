@@ -8,14 +8,31 @@ import { useCategories } from "@/hook/useCategories"
 import { Category, Post } from "@prisma/client"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
-import { SyntheticEvent, useState } from "react"
-import "react-quill/dist/quill.snow.css"
-import ReactQuill from "react-quill"
+import { SyntheticEvent, useLayoutEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { useMutation } from "react-query"
 import axios from "axios"
 import { slugify } from "@/utils/slugify"
 import Image from "next/image"
+
+// Importation de la feuille de style pour le thème "snow" de React Quill
+import "react-quill/dist/quill.snow.css";
+
+// Importation de la fonction dynamic de Next.js, utilisée pour charger des composants dynamiquement
+import dynamic from "next/dynamic";
+
+// Utilisation de la fonction dynamic pour charger le composant ReactQuill de manière asynchrone
+const ReactQuill = dynamic(
+  // Fonction qui importe le module React Quill
+    () => import("react-quill"),
+    {
+        // Option qui définit un élément de chargement à afficher pendant l'importation du composant
+        loading: () => <p>Loading...</p>,
+        // Désactive le rendu côté serveur (ssr), ce qui signifie que ce composant ne sera rendu que côté client
+        ssr: false,
+    }
+);
+
 
 export default function WritePage() {
 
@@ -40,9 +57,15 @@ export default function WritePage() {
 
     const {data: session} = useSession()
 
-    if (!session){
-        router.replace('/login')
-    }
+    useLayoutEffect(() => {
+        if (!session) {
+            router.replace("/login");
+            return;
+        }
+    }, [router, session]);
+
+    // useLayoutEffect s'exécute juste après que le DOM ait été modifié, mais avant que l'utilisateur ne voie les modifications visuelles. Cela signifie que l'effet est appliqué immédiatement après le rendu du composant, garantissant ainsi que l'utilisateur n'aperçoit pas l'état "incorrect" (comme une page non protégée) avant d'être redirigé.
+
 
     const onchangeFile = (e: SyntheticEvent) => {
         const files = (e.target as HTMLInputElement).files
