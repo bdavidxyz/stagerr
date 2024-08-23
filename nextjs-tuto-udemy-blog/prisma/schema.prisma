@@ -52,6 +52,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   posts Post[]
+  comments Comment[]
   @@map("users")
 }
 
@@ -73,6 +74,7 @@ model Post {
   image      String?
   view       Int      @default(0)
   nbComments Int      @default(0)
+  comments Comment[]
 
   // user
   userEmail String
@@ -89,4 +91,18 @@ model Category {
   title String
   image String?
   posts Post[]
+}
+
+model Comment {
+  id    String  @id @default(cuid())
+  createdAt  DateTime @default(now())
+  content String
+
+  // user
+  userEmail String
+  user User @relation(fields: [userEmail], references: [email])
+
+  // post
+  postSlug String
+  post Post @relation(fields: [postSlug], references: [slug])
 }
