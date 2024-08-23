@@ -27,3 +27,7 @@ export type PostWithCategory = Prisma.PostGetPayload<{
     include: {cat: true}
     // Dans Prisma, l'option include permet de spécifier les relations que l'on souhaites inclure lorsqu'on récupères un enregistrement.
 }>
+
+export type CommentWithUser = Prisma.CommentGetPayload<{
+    include: {user: true}
+}>
