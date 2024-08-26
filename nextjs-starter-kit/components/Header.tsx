@@ -3,6 +3,7 @@
 import DarkModeToggleButton from './DarkModeToggleButton'
 import Link from 'next/link'
 import Logo from "@/components/Logo"
+import ButtonLogin from './ButtonLogin'
 
 export default function Header() {
     return (
@@ -14,6 +15,7 @@ export default function Header() {
             </Link>
             <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                 <DarkModeToggleButton />
+                <ButtonLogin />
                 <button
                 data-collapse-toggle="navbar-sticky"
                 type="button"
